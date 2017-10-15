@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Guessing Game</title>
+</head>
+
+<body onload="do_game()">
+<script>
+var target_index_text;
+var target_index;
+var target_color;
+var input_color;
+var count=0;
+var colors;
+var finished=false;
+
+function do_game(){
+colors=["Aqua","blue","brown","green","indigo","orange","pink","red","yellow","violet"]
+target_index_text=math.floor(math.random()*10);
+target_index=parseInt(target_index_text);
+target_color=colors[target_index];
+
+while(!finished)
+{
+input_color=prompt(colors.sort()+"\n\n"+"Select any one colour from the list");
+finished=check_guess();
+count++;
+}
+}
+function check_guess()
+{
+var flag=false;
+	for(int i=0;i<colors.length-1;i++)
+	{
+	if(input_color==colors[i])
+	flag=true;
+    }
+    if(flag==false)
+    {
+    alert(colors.sort()+"\n\n"+"choose recognized color from the list");
+    rerturn false;
+    }
+    
+    if(input_color<target_color)
+    {
+    alert(colors.sort()+"\n\n"+"your colour is Alplabetically smaller");
+    return false;
+    }
+    if(input_color>target_color)
+    {
+    alert(colors.sort()+"\n\n"+"your colour is Alplabetically bigger");
+    return false;
+    }
+    if(input_color==target_color)
+    {
+    myBody=document.getElementsByTagName("body")[0];
+	myBody.style.background=target_color;
+    alert("congratulations,you have won"+"\n\n"+"Toatal no. of guesses:"+count);
+    return true;
+    }
+}
+</script>
+
+</body>
+</html>

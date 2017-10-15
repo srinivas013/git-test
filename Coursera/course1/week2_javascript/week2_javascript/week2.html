@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Guessing Game</title>
+</head>
+
+<body onload="do_game()">
+<script>
+var target_index_text;
+var target_index;
+var target_color;
+var input_color;
+var count=0;
+var colors;
+var finished=false;
+
+function do_game(){
+colors=["Aqua","blue","brown","green","indigo","orange","pink","red","yellow","violet"]
+target_index_text=Math.floor(Math.random()*10);
+target_index=parseInt(target_index_text);
+target_color=colors[target_index];
+alert(target_color);
+while(!finished)
+{
+input_color=prompt(colors.sort()+"\n\n"+"Select any one colour from the list");
+count++;
+finished=check_guess();
+}
+}
+function check_guess()
+{
+var flag=false;
+var i;
+	for(i=0;i<colors.length;i++)
+	{
+	if(input_color==colors[i])
+	flag=true;
+    }
+    if(flag==false)
+    {
+    alert(colors.sort()+"\n\n"+"I don’t recognize that color!Choose recognized color from the list");
+    return false;
+    }
+    
+    if(input_color<target_color)
+    {
+    alert(colors.sort()+"\n\n"+"Your input is alphabetically lower than mine!");
+    return false;
+    }
+    if(input_color>target_color)
+    {
+    alert(colors.sort()+"\n\n"+"Your input is alphabetically higher than mine!");
+    return false;
+    }
+    if(input_color==target_color)
+    {
+    myBody=document.getElementsByTagName("body")[0];
+	myBody.style.background=target_color;
+    alert("congratulations,you are right!"+"\n\n"+"You took "+ count +" guesses!");
+    return true;
+    }
+}
+</script>
+
+</body>
+</html>
